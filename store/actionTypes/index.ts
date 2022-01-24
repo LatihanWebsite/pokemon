@@ -2,6 +2,8 @@ import { ErrorStatus } from 'store/reducers/status';
 
 export enum ActionType {
   GET_ALL_DATA_POKEMON = 'GET_ALL_DATA_POKEMON',
+  SET_DATA_POKEMON = 'SET_DATA_POKEMON',
+
   SET_DATA_OWNED = 'SET_DATA_OWNED',
 
   SET_LOADING = 'SET_LOADING',
@@ -10,6 +12,11 @@ export enum ActionType {
 
 interface getAllDataPokemon {
   type: ActionType.GET_ALL_DATA_POKEMON;
+  payload: any;
+}
+
+interface setDataPokemon {
+  type: ActionType.SET_DATA_POKEMON;
   payload: any;
 }
 
@@ -28,4 +35,4 @@ interface setError {
   payload: ErrorStatus;
 }
 
-export type Action = getAllDataPokemon | setOwned | setLoading | setError;
+export type Action = getAllDataPokemon | setOwned | setLoading | setError | setDataPokemon;
