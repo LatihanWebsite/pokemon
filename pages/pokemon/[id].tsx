@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  LinearProgress,
   Paper,
   Table,
   TableBody,
@@ -19,6 +18,7 @@ import {
 } from '@mui/material';
 import { capitalizeFirstLetter, clearWord } from 'helpers';
 import { useTypedSelector } from 'hooks';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -55,7 +55,12 @@ export default function PokemonDetail() {
   }, [id]);
 
   if (loading) {
-    return <LinearProgress />;
+    // return <LinearProgress color='error' />;
+    return (
+      <div className='w-full h-[calc(100vh-164px)] flex justify-center text-center'>
+        <Image className='animate-spin' src={'/icons/Pokeball.svg'} height={100} width={100} alt='Pokeball' />
+      </div>
+    );
   }
 
   const handleCatchPokemon = () => {
@@ -63,7 +68,6 @@ export default function PokemonDetail() {
     var newId = 0;
 
     if (data) {
-      console.log('masuk if');
       let storage = JSON.parse(data || '');
       newId = storage[storage.length - 1].idCatch;
     }
@@ -105,7 +109,7 @@ export default function PokemonDetail() {
         dispatch(setLoading(false));
         setOpenDialogFailed(true);
       }
-    }, 5000);
+    }, 3000);
   };
 
   const handleSavePokemon = () => {
@@ -129,7 +133,7 @@ export default function PokemonDetail() {
         #{data_pokemon.id} {data_pokemon.name}
       </h1>
       <div className='md:grid md:grid-cols-2 mb-8'>
-        <div className='flex mb-8 md:mb-0 justify-center bg-gray-100 rounded-xl w-full'>
+        <div className='flex mb-8 md:mb-0 justify-center items-center bg-gray-100 rounded-xl w-full'>
           <img src={data_pokemon.image} alt={data_pokemon.name} />
         </div>
         <div className='w-full md:pl-10'>
@@ -222,7 +226,7 @@ export default function PokemonDetail() {
       <Dialog open={openDialogDone} keepMounted aria-describedby='alert-dialog-slide-description'>
         <DialogTitle>{`Congratulation! you have got ${data_pokemon.name}`}</DialogTitle>
         <DialogContent>
-          <DialogContentText className='mb-4' id='alert-dialog-slide-description'>
+          <DialogContentText className='mb-8' id='alert-dialog-slide-description'>
             Before you save pokemon please give the pokemon a nickname!
           </DialogContentText>
           <TextField

@@ -37,6 +37,7 @@ export default function CardMyPokemon(props: CardPokemonProps) {
         onClick={() => props.onHandleRelease(props.idCatch, props.nickname)}
         color='error'
         variant='outlined'
+        size='medium'
         startIcon={<AutoAwesome />}
       >
         Release

@@ -1,3 +1,4 @@
+import { Button } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 
@@ -7,12 +8,16 @@ export default function Navbar() {
       <div className=' h-full flex justify-between items-center p-2 md:py-2 md:px-8'>
         <Link href='/'>
           <a>
-            <img src={'/icons/pokemon-logo.svg'} width={120} alt='logo-pokemon' />
+            <div className='p-1'>
+              <img src={'/icons/pokemon-logo.svg'} width={120} alt='logo-pokemon' />
+            </div>
           </a>
         </Link>
         <div>
           <Link href='/my-pokemon-list'>
-            <a>My Pokemon List</a>
+            <a>
+              <Button color='inherit'>My Pokemon List</Button>
+            </a>
           </Link>
         </div>
       </div>

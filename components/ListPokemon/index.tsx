@@ -19,11 +19,20 @@ export default function ListPokemon() {
   }, [offsite]);
 
   const handleNext = () => {
+    scrollToTop();
     setOffsite(offsite + limit);
   };
 
   const handleBack = () => {
+    scrollToTop();
     setOffsite(offsite - limit);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // for smoothly scrolling
+    });
   };
 
   return (
@@ -31,26 +40,25 @@ export default function ListPokemon() {
       <h1 className='text-center text-2xl'>
         <span className='font-bold'>{data_owned} Pokemons</span> that you can catch and save to your pokemon list
       </h1>
-      <div className='m-4'>
+      <div className='m-4 my-10'>
+        <div className='grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
+          {data_fetch_pokemon.map((pokemon: any) => (
+            <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} image={pokemon.image} />
+          ))}
+        </div>
         <div className='flex my-8 justify-between md:justify-end gap-4'>
           <Button
-            color='info'
+            color='inherit'
             variant='outlined'
-            size='small'
             startIcon={<NavigateBefore />}
             onClick={handleBack}
             disabled={offsite === 0 ? true : false}
           >
             Previous
           </Button>
-          <Button color='info' variant='outlined' size='small' endIcon={<NavigateNext />} onClick={handleNext}>
+          <Button color='inherit' variant='outlined' endIcon={<NavigateNext />} onClick={handleNext}>
             Next
           </Button>
-        </div>
-        <div className='grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
-          {data_fetch_pokemon.map((pokemon: any) => (
-            <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} image={pokemon.image} />
-          ))}
         </div>
       </div>
     </>

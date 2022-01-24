@@ -62,7 +62,7 @@ export default function MyPokemonList() {
           </div>
         ) : (
           <>
-            <div className='grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
+            <div className='grid gap-4 md:grid-cols-2 md:gap-4 mt-12 lg:grid-cols-3'>
               {listPokemon.length !== 0 &&
                 listPokemon.map((pokemon: any) => (
                   <CardMyPokemon
