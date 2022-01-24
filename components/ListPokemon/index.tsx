@@ -1,8 +1,7 @@
 import { NavigateBefore, NavigateNext } from '@mui/icons-material';
 import { Button } from '@mui/material';
-import { capitalizeFirstLetter } from 'helpers';
+import CardPokemon from 'components/General/CardPokemon';
 import { useTypedSelector } from 'hooks';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllDataPokemon } from 'store/actionsCreator/pokemon';
@@ -50,22 +49,7 @@ export default function ListPokemon() {
         </div>
         <div className='grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3'>
           {data_fetch_pokemon.map((pokemon: any) => (
-            <Link href={`/pokemon/${pokemon.id}`}>
-              <a>
-                <div
-                  key={pokemon.id}
-                  className='flex shadow-xl bg-white justify-between rounded-md items-center w-full h-auto'
-                >
-                  <div className='w-1/3 flex justify-center items-center'>
-                    <img className='bg-gray-100 rounded-md m-2' src={pokemon.image} width={100} alt={pokemon.name} />
-                  </div>
-                  <div className='w-2/3'>
-                    <p>#{pokemon.id}</p>
-                    <h3 className='text-lg font-semibold'>{capitalizeFirstLetter(pokemon.name)}</h3>
-                  </div>
-                </div>
-              </a>
-            </Link>
+            <CardPokemon key={pokemon.id} id={pokemon.id} name={pokemon.name} image={pokemon.image} />
           ))}
         </div>
       </div>

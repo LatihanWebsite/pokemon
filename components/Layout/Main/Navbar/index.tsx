@@ -11,7 +11,7 @@ export default function Navbar() {
           </a>
         </Link>
         <div>
-          <Link href='#'>
+          <Link href='/my-pokemon-list'>
             <a>My Pokemon List</a>
           </Link>
         </div>
